@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
 import API from '../services/PizzaApi';
@@ -11,10 +10,15 @@ import Header from './Header';
 import CartPage from './pages/CartPage';
 import MainPage from './pages/MainPage';
 
-const App = ({ pizzas, setPizzas }) => {
-  useEffect(async () => {
-    const res = await API.getPizzas();
-    setPizzas(res);
+const App = () => {
+  const dispatch = useDispatch();
+
+  window.test = () => {
+    API.getPizzas().then((data) => dispatch(setPizzas(data)));
+  };
+
+  useEffect(() => {
+    API.getPizzas().then((data) => dispatch(setPizzas(data)));
   }, []);
 
   return (
@@ -23,14 +27,7 @@ const App = ({ pizzas, setPizzas }) => {
       <div className="content">
         <div className="container">
           <Switch>
-            <Route
-              path="/"
-              exact
-              render={() => {
-                return <MainPage pizzas={pizzas} />;
-              }}
-            />
-
+            <Route path="/" exact component={MainPage} />
             <Route path="/cart" component={CartPage} />
 
             <Redirect to="/" />
@@ -41,10 +38,4 @@ const App = ({ pizzas, setPizzas }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    pizzas: state.pizzas.items,
-  };
-};
-
-export default connect(mapStateToProps, { setPizzas })(App);
+export default App;

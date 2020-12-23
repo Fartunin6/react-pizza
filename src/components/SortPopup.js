@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 
-const SortPopup = ({ items }) => {
+const SortPopup = memo(({ items }) => {
   const [visiblePopup, setVisiblePopup] = useState(true);
   const [activeItem, setActiveItem] = useState(0);
-
-  const activeLabel = items[activeItem].name;
 
   const sortRef = useRef();
 
@@ -35,7 +33,7 @@ const SortPopup = ({ items }) => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setVisiblePopup(true)}>{activeLabel}</span>
+        <span onClick={() => setVisiblePopup(true)}>{items[activeItem].name}</span>
       </div>
       {visiblePopup && items && (
         <div className="sort__popup">
@@ -45,8 +43,8 @@ const SortPopup = ({ items }) => {
                 <li
                   key={idx}
                   onClick={() => {
-                    setVisiblePopup(false);
                     setActiveItem(idx);
+                    setVisiblePopup(false);
                   }}
                   className={idx === activeItem ? 'active' : ''}>
                   {item.name}
@@ -58,6 +56,6 @@ const SortPopup = ({ items }) => {
       )}
     </div>
   );
-};
+});
 
 export default SortPopup;

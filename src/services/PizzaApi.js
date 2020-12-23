@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = {
-  async getPizzas() {
+  async getPizzas(category) {
     const data = await axios.get('http://localhost:3000/db.json');
     return data.data.pizzas;
   },
