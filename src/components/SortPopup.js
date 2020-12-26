@@ -1,13 +1,14 @@
 import React, { memo, useState, useEffect, useRef } from 'react';
 
-const SortPopup = memo(({ items }) => {
+const SortPopup = memo(({ items, activeSortType, setSortBy }) => {
   const [visiblePopup, setVisiblePopup] = useState(true);
-  const [activeItem, setActiveItem] = useState(0);
 
   const sortRef = useRef();
 
   const handleOutsideClick = (e) => {
-    if (!e.path.includes(sortRef.current)) {
+    const path = e.path || (e.composedPath && e.composedPath());
+
+    if (!path.includes(sortRef.current)) {
       setVisiblePopup(false);
     }
   };
@@ -33,7 +34,9 @@ const SortPopup = memo(({ items }) => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setVisiblePopup(true)}>{items[activeItem].name}</span>
+        <span onClick={() => setVisiblePopup(true)}>
+          {items.find((item) => item.type === activeSortType).name}
+        </span>
       </div>
       {visiblePopup && items && (
         <div className="sort__popup">
@@ -43,10 +46,10 @@ const SortPopup = memo(({ items }) => {
                 <li
                   key={idx}
                   onClick={() => {
-                    setActiveItem(idx);
+                    setSortBy(item);
                     setVisiblePopup(false);
                   }}
-                  className={idx === activeItem ? 'active' : ''}>
+                  className={item.type === activeSortType ? 'active' : ''}>
                   {item.name}
                 </li>
               );

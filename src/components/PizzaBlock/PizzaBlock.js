@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 
-const PizzaBlock = ({ imageUrl, name, price, sizes, types }) => {
+const PizzaBlock = ({ id, imageUrl, name, price, sizes, types, onAddPizza }) => {
   const [activeSize, setActiveSize] = useState(0);
-  const [activeType, setActiveType] = useState(0);
+  const [activeType, setActiveType] = useState(types[0]);
 
-  const typesName = ['тонкое', 'традиционное'];
+  const typeNames = ['тонкое', 'традиционное'];
+
+  const addPizzaToCart = () => {
+    const obj = {
+      id,
+      imageUrl,
+      name,
+      price,
+      size: sizes[activeSize],
+      type: typeNames[activeType],
+    };
+
+    onAddPizza(obj);
+  };
 
   return (
     <div className="pizza-block">
@@ -12,13 +25,13 @@ const PizzaBlock = ({ imageUrl, name, price, sizes, types }) => {
       <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((type, idx) => {
+          {types.map((type) => {
             return (
               <li
-                key={idx}
-                className={idx === activeType ? 'active' : ''}
-                onClick={() => setActiveType(idx)}>
-                {typesName[type]}
+                key={type}
+                className={type === activeType ? 'active' : ''}
+                onClick={() => setActiveType(type)}>
+                {typeNames[type]}
               </li>
             );
           })}
@@ -38,7 +51,7 @@ const PizzaBlock = ({ imageUrl, name, price, sizes, types }) => {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <div onClick={addPizzaToCart} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -59,5 +72,3 @@ const PizzaBlock = ({ imageUrl, name, price, sizes, types }) => {
 };
 
 export default PizzaBlock;
-
-// cartPizzas(id) => pizzas[id]

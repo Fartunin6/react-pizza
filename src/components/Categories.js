@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 
-const Categories = memo(({ items, category, setCategory }) => {
+const Categories = memo(({ items, activeCategory, setCategory }) => {
   return (
     <div className="categories">
       <ul>
-        <li className={category === null ? 'active' : ''} onClick={() => setCategory(null)}>
+        <li className={activeCategory === null ? 'active' : ''} onClick={() => setCategory(null)}>
           Все
         </li>
 
@@ -14,7 +14,7 @@ const Categories = memo(({ items, category, setCategory }) => {
               <li
                 key={idx}
                 onClick={() => setCategory(idx)}
-                className={idx === category ? 'active' : ''}>
+                className={idx === activeCategory ? 'active' : ''}>
                 {item}
               </li>
             );
