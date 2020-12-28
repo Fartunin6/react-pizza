@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const PizzaBlock = ({ id, imageUrl, name, price, sizes, types, onAddPizza }) => {
+const PizzaBlock = ({ id, imageUrl, name, price, sizes, types, addedCount, onAddPizza }) => {
   const [activeSize, setActiveSize] = useState(0);
   const [activeType, setActiveType] = useState(types[0]);
 
@@ -64,7 +64,7 @@ const PizzaBlock = ({ id, imageUrl, name, price, sizes, types, onAddPizza }) => 
             />
           </svg>
           <span>Добавить</span>
-          <i>0</i>
+          {addedCount && <i>{addedCount}</i>}
         </div>
       </div>
     </div>

@@ -15,14 +15,17 @@ import { categoryNames, sortItems } from '../../constants';
 const MainPage = () => {
   const dispatch = useDispatch();
 
-  const { pizzas, category, loading, sortBy } = useSelector(({ pizzas, filters }) => {
-    return {
-      pizzas: pizzas.items,
-      loading: pizzas.loading,
-      category: filters.category,
-      sortBy: filters.sortBy,
-    };
-  });
+  const { pizzas, cartPizzas, category, loading, sortBy } = useSelector(
+    ({ pizzas, filters, cart }) => {
+      return {
+        pizzas: pizzas.items,
+        cartPizzas: cart.items,
+        loading: pizzas.loading,
+        category: filters.category,
+        sortBy: filters.sortBy,
+      };
+    },
+  );
 
   useEffect(() => {
     dispatch(fetchPizzas(category, sortBy));
@@ -57,7 +60,14 @@ const MainPage = () => {
           ? Array(10)
               .fill(0)
               .map((el, idx) => <PizzaLoadingBlock key={idx} />)
-          : pizzas.map((obj) => <PizzaBlock key={obj.id} onAddPizza={onAddPizza} {...obj} />)}
+          : pizzas.map((obj) => (
+              <PizzaBlock
+                key={obj.id}
+                addedCount={cartPizzas[obj.id] && cartPizzas[obj.id].length}
+                onAddPizza={onAddPizza}
+                {...obj}
+              />
+            ))}
       </ul>
     </div>
   );
