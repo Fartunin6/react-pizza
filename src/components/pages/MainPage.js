@@ -63,7 +63,7 @@ const MainPage = () => {
           : pizzas.map((obj) => (
               <PizzaBlock
                 key={obj.id}
-                addedCount={cartPizzas[obj.id] && cartPizzas[obj.id].length}
+                addedCount={cartPizzas[obj.id] && cartPizzas[obj.id].items.length}
                 onAddPizza={onAddPizza}
                 {...obj}
               />
