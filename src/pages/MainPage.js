@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategory, setSortBy } from '../../actions/filters';
-import { fetchPizzas } from '../../actions/pizzas';
-import { addPizzaToCart } from '../../actions/cart';
+import { setCategory, setSortBy } from '../actions/filters';
+import { fetchPizzas } from '../actions/pizzas';
+import { addPizzaToCart } from '../actions/cart';
 
-import Categories from '../Categories';
-import PizzaBlock from '../PizzaBlock/PizzaBlock';
-import PizzaLoadingBlock from '../PizzaBlock/PizzaLoadingBlock';
-import SortPopup from '../SortPopup';
+import Categories from '../components/Categories';
+import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
+import PizzaLoadingBlock from '../components/PizzaBlock/PizzaLoadingBlock';
+import SortPopup from '../components/SortPopup';
 
-import { categoryNames, sortItems } from '../../constants';
+import { categoryNames, sortItems } from '../constants';
 
 const MainPage = () => {
   const dispatch = useDispatch();

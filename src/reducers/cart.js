@@ -21,12 +21,6 @@ const cart = (state = initialState, action) => {
         },
       };
 
-      //const items = Object.values(newItems).map((obj) => obj.items);
-      //const addedPizzas = Object.values(items).flat();
-
-      //totalPrice: getTotalPrice(addedPizzas)
-      //totalCount: addedPizzas.length
-
       return {
         items: newItems,
         totalCount: state.totalCount + 1,

@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
-import CartPage from './pages/CartPage';
-import MainPage from './pages/MainPage';
+import CartPage from '../pages/CartPage';
+import MainPage from '../pages/MainPage';
 
 const App = () => {
   return (

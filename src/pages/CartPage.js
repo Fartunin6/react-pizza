@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { removePizza, plusPizza, minusPizza, clearCart } from '../../actions/cart';
+import { removePizza, plusPizza, minusPizza, clearCart } from '../actions/cart';
 
-import CartBlock from '../CartBlock';
-import cartEmptyImage from '../../assets/img/empty-cart.png';
+import CartBlock from '../components/CartBlock';
+import cartEmptyImage from '../assets/img/empty-cart.png';
 
 const CartPage = () => {
   const dispatch = useDispatch();
