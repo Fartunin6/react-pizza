@@ -1,5 +1,3 @@
-import PizzaLoadingBlock from '../components/PizzaBlock/PizzaLoadingBlock';
-
 export const addPizzaToCart = (pizza) => {
   return {
     type: 'ADD_PIZZA_TO_CART',
