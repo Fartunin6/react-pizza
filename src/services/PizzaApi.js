@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = '/pizzas';
+const BASE_URL = 'http://localhost:3001/pizzas';
 
 const API = {
   async getPizzas(category, sortBy) {
