@@ -6,6 +6,7 @@ import CartPage from '../pages/CartPage';
 import MainPage from '../pages/MainPage';
 
 const App = () => {
+  console.log(window.location.hostname);
   return (
     <div className="wrapper">
       <Header />
