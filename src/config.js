@@ -1,8 +1,7 @@
 export const hostname = window.location.hostname;
-
 export const api = {
   localhost: 'http://localhost:5000/api',
-  'testing.jira.com': 'https://testing.jira.com/api',
+  'react-pizzass.herokuapp.com': 'https://react-pizzass.herokuapp.com',
 };
 
 const apiBase = api[hostname];
